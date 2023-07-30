@@ -1,4 +1,5 @@
 # YizziFishMod
+# GETS U BANNED NOW BC IT DISABLES GRAVITY
 Gorilla Tag but fish game inspired locomotion
 
 
