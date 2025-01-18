@@ -43,7 +43,7 @@ namespace YizziFishMod
         void OnDisable()
         {
             swimming = false;
-            _rigidbody.useGravity = true;
+            Physics.gravity = ogGravity;
         }
 
         void OnGameInitialized(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace YizziFishMod
         public void OnLeave(string gamemode)
         {
             inRoom = false;
-            _rigidbody.useGravity = true;
+            Physics.gravity = ogGravity;
         }
     }
 }
