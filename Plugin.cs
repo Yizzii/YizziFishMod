@@ -28,6 +28,7 @@ namespace YizziFishMod
         public XRNode lHandNode = XRNode.LeftHand;
         public XRNode rHandNode = XRNode.RightHand;
         Rigidbody _rigidbody;
+        Vector3 ogGravity;
 
         void Start()
         {
@@ -42,11 +43,12 @@ namespace YizziFishMod
         void OnDisable()
         {
             swimming = false;
-            _rigidbody.useGravity = true;
+            Physics.gravity = ogGravity;
         }
 
         void OnGameInitialized(object sender, EventArgs e)
         {
+            ogGravity = Physics.gravity;
             _rigidbody = Player.Instance.bodyCollider.attachedRigidbody;
             trackingReference = GameObject.Find("Player VR Controller/GorillaPlayer/TurnParent").transform;
             lefthand = Player.Instance.leftHandTransform;
@@ -99,11 +101,11 @@ namespace YizziFishMod
                         {
                             _rigidbody.AddForce(-_rigidbody.velocity * dragforce, ForceMode.Acceleration);
                         }
-                        _rigidbody.useGravity = false;
+                        Physics.gravity = Vector3.zero;
                     }
                     else
                     {
-                        _rigidbody.useGravity = true;
+                        Physics.gravity = ogGravity;
                     }
                 }
                    
@@ -121,7 +123,7 @@ namespace YizziFishMod
         public void OnLeave(string gamemode)
         {
             inRoom = false;
-            _rigidbody.useGravity = true;
+            Physics.gravity = ogGravity;
         }
     }
 }
